@@ -6,7 +6,19 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
     alert('The File APIs are not fully supported in this browser.');
 }
 
+var _grid = null;
 var _renderer = null;
+
+document.getElementById('toggle-grid-btn').onclick = function() {
+    if (!_grid) {
+        return;
+    }
+    if(_grid.visible) {
+        _grid.visible = false;
+    } else {
+        _grid.visible = true;
+    }
+};
 
 function getFiles(files) {
     document.getElementById('current-file-name')
@@ -50,7 +62,8 @@ function animateBvh(bvhFile) {
         controls.maxDistance = 400;
         scene = new THREE.Scene();
         scene.background = new THREE.Color( 0xeeeeee );
-        scene.add( new THREE.GridHelper( 20, 10 ) );
+        _grid = new THREE.GridHelper(20, 10);
+        scene.add(_grid);
         // renderer
         _renderer = new THREE.WebGLRenderer( { antialias: true } );
         _renderer.setPixelRatio( window.devicePixelRatio );
