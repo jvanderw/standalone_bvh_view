@@ -27,7 +27,8 @@
   </head>
   <body>
     <div id="info">
-
+      <input type="file" id="input" onchange="getFiles(this.files)">
+      <div>Current file: <span id="current-file-name"></span></div>
     </div>
     <script src="../js/three.js"></script>
     <script src="../js/OrbitControls.js"></script>
